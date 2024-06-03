@@ -8,16 +8,19 @@ const useHomeInfoStore = defineStore('homeInfo', {
     taskone: 0,
     tasktwo: 0,
     createAt:"",
-    updateAt:""
+    updateAt:"",
+    hEmail:""
   }),
   actions: {
     setUser(user) {
-      this.userId = user.userId;
-      this.username = user.username;
-      this.age = user.age;
-      this.like = user.like;
-      this.obj = user.obj;
-      this.hobby = user.hobby;
+      this.id = user.id;
+      this.email = user.email;
+      this.taskone = user.taskone;
+      this.tasktwo = user.tasktwo;
+      this.createAt = user.createAt;
+      this.updateAt = user.updateAt;
+      this.hEmail = user.hEmail;
+
   },
      // 加载持久化的状态
      loadPersistedState() {
@@ -47,6 +50,7 @@ const useHomeInfoStore = defineStore('homeInfo', {
         homeService.getUser(email)
           .then(res => {
             this.setUser(res.data);
+            console.log(res.data)
             if (callback) {
               callback(null, res.data);
             }
@@ -57,6 +61,24 @@ const useHomeInfoStore = defineStore('homeInfo', {
               callback(error);
             }
           });
+      },
+      updateUser(user, callback){
+        console.log(user)
+        homeService.updateTask(user)
+        .then(res => {
+          this.setUser(res.data);
+          console.log(res.data)
+
+          if (callback) {
+            callback(null, res.data);
+          }
+        })
+        .catch(error => {
+          console.error(error);
+          if (callback) {
+            callback(error);
+          }
+        });
       }
       
   }

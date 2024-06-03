@@ -56,13 +56,8 @@ const email = ref(null);
 defineProps({
   name: String,
 });
-// onBeforeMount(() => {
-//   homeInfo.getRemoteUser("999");
-
-// });
 
 const handleTouchStart = (event) => {
-  console.log("11");
   event.preventDefault();
 };
 
@@ -79,21 +74,23 @@ const handleTouchMove = (event) => {
 const handleGestureStart = (event) => {
   event.preventDefault();
 };
+const screenHeight = ref(window.screen.height);
+const count = ref(0);
 
 // 定义 onPlaceholderMobleBlur 方法
 const onPlaceholderMobleBlur = () => {
   console.log("==============33");
   // window.scroll(0, 0);
-  // window.scrollTo({
-  //   top: 0,
-  //   behavior: 'smooth'  // 这个属性指定滚动行为为平滑滚动
-  // });
-  setTimeout(() => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
-  }, 100); // 延迟100毫秒以便浏览器完成渲染
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth", // 这个属性指定滚动行为为平滑滚动
+  });
+  // setTimeout(() => {
+  //   window.scrollTo({
+  //     top: 0,
+  //     behavior: "smooth",
+  //   });
+  // }, 100); // 延迟100毫秒以便浏览器完成渲染
 };
 // 禁止web端屏幕缩放和滑动，但允许点击输入框
 onMounted(() => {
@@ -113,12 +110,11 @@ onBeforeUnmount(() => {
 const sendEmail = () => {
   router.push({ path: "/map" });
 
-  return;
   // 正则表达式验证邮箱格式
   const emailRegex = /\S+@\S+\.\S+/;
-  const that = this;
-  if (emailRegex.test(email.value)) {
-    homeInfo.createUser(email.value, (err, data) => {
+  let em = email.value.trim();
+  if (emailRegex.test(em)) {
+    homeInfo.createUser(em, (err, data) => {
       if (err) {
         console.log(err);
       } else {
