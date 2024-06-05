@@ -1,30 +1,20 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import path from 'path'
-const resolveP = (dir) => path.join(__dirname, dir);
-import { resolve } from 'path';
+const resolve = (dir) => path.join(__dirname, dir);
 
+// https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [vue()
-  ],
+  plugins: [vue()],
   resolve:  {
     alias: {
-      "@":resolveP('src'),
-      "@assets":resolveP('src/assets'),
-      "@components":resolveP('src/components')
+      "@":resolve('src'),
+      "@assets":resolve('src/assets'),
+      "@components":resolve('src/components')
     }
     
-  },
-  server: {
-    host: '0.0.0.0', 
-  },
-  build: {
-    rollupOptions: {
-      input: {
-          // 配置所有页面路径，使得所有页面都会被打包
-          main: resolve(__dirname, 'index.html'),
-          status: resolve(__dirname, 'page/detail/index.html'),
-      }
-    }
-  }
+},
+server: {
+  host: '0.0.0.0', // 或者你的本地 IP 地址
+}
 })

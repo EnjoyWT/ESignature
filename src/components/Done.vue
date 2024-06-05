@@ -3,7 +3,7 @@
     <img :src="doneimg" class="fixed w-screen inset-0" />
 
     <button
-      @click="toggleShowDone"
+      @click.stop.prevent="toggleShowDone"
       class="w-[100px] h-[50px] fixed"
       :style="{
         top: elementTop + 'px',
@@ -54,6 +54,7 @@ onBeforeMount(() => {
 
 const handleClick = () => {
   isShowDone = false;
+  console.log("handleClick====");
 };
 </script>
 

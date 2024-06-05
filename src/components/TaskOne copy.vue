@@ -83,21 +83,14 @@ const handleUserData = () => {
 };
 
 const onTouchStart = (event) => {
-  const touchArea = document.querySelector(".touch-area");
-  const touchAreaRect = touchArea.getBoundingClientRect();
-
   touches.value = Array.from(event.touches).map((touch) => ({
-    x: touch.clientX - touchAreaRect.left,
-    y: touch.clientY - touchAreaRect.top,
+    x: touch.clientX,
+    y: touch.clientY,
   }));
-
-  console.log(touches.value);
-  if (touches.value.length == 3) {
+  console.log(touches.value.length);
+  if (touches.value.length == 2) {
     handleTouchEnd();
   }
-
-  event.preventDefault();
-  event.stopPropagation();
 };
 const handleTouchEnd = (event) => {
   //检测两个点的距离 ,满足条件后

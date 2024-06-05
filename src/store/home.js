@@ -9,7 +9,8 @@ const useHomeInfoStore = defineStore('homeInfo', {
     tasktwo: 0,
     createAt:"",
     updateAt:"",
-    hEmail:""
+    hEmail:"",
+    count:0
   }),
   actions: {
     setUser(user) {
@@ -21,6 +22,9 @@ const useHomeInfoStore = defineStore('homeInfo', {
       this.updateAt = user.updateAt;
       this.hEmail = user.hEmail;
 
+  },
+  setCount(c){
+    this.count = c
   },
      // 加载持久化的状态
      loadPersistedState() {

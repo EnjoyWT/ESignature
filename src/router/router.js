@@ -1,9 +1,9 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHistory,createWebHashHistory } from 'vue-router'
 import Home from '../components/Home.vue'
 import Map from '../components/Map.vue'
 import TaskOne from "../components/TaskOne.vue"
 import TaskTwo from "../components/TaskTwo.vue"
-
+import test from "../components/test.vue"
 const routes = [
   { path: '/', component: Home },
   { path: '/map',
@@ -16,7 +16,8 @@ const routes = [
 ] 
 
 const router = createRouter({
-  history: createWebHistory(),
+  history: createWebHashHistory(),
+  // mode: 'hash',
   routes
 })
 

@@ -5,8 +5,14 @@ import router from "./router/router"
 import pinia from "./store/index"
 import piniaPluginPersistedstate from 'pinia-plugin-persistedstate';
 
-import vConsole from 'vconsole'
-const vconsole = new vConsole()
+
+if (process.env.NODE_ENV === 'development') {
+    import('vconsole').then(({ default: VConsole }) => {
+      // eslint-disable-next-line no-new
+      new VConsole();
+    });
+  }
+
 
 const app = createApp(App)
 

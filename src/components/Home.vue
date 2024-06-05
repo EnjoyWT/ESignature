@@ -108,8 +108,6 @@ onBeforeUnmount(() => {
 
 // 一个一个修改
 const sendEmail = () => {
-  router.push({ path: "/map" });
-
   // 正则表达式验证邮箱格式
   const emailRegex = /\S+@\S+\.\S+/;
   let em = email.value.trim();
@@ -129,11 +127,11 @@ const handleUserData = (data) => {
   let taskOne = data.taskOne;
   let taskTwo = data.taskTwo;
 
-  if (taskOne + taskTwo == 2) {
-    //已经完成了
-  } else {
-    router.push({ path: "/map" });
-  }
+  // if (taskOne + taskTwo == 2) {
+  //   //已经完成了
+  // } else {
+  router.push({ path: "/map" });
+  // }
 };
 
 onBeforeMount(() => {
