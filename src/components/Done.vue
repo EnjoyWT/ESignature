@@ -18,7 +18,7 @@
  
 <script setup>
 import { ref, onBeforeMount } from "vue";
-import doneimg from "../assets/es/04tanchuang/done.jpg";
+import doneimg from "../assets/es/04tanchuang/done.png";
 const elementTop = ref(0);
 
 const props = defineProps({

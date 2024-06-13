@@ -1,14 +1,14 @@
 <template>
   <div>
-    <img :src="showImgSrc" class="w-screen h-svh fixed inset-0" />
+    <img :src="taskoneimg" class="w-screen h-svh fixed inset-0" />
 
-    <!-- <div
+    <div
       class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
     >
       <img :src="showImgSrc" />
-    </div> -->
+    </div>
     <div
-      class="touch-area fixed left-0 right-0 top-1/4 h-1/2 select-none"
+      class="touch-area fixed left-0 right-0 top-1/4 h-1/2 select-non"
       @touchstart.self.prevent="onTouchStart"
       @contextmenu.prevent="disableContextMenu"
     >
@@ -38,13 +38,9 @@
 
 <script setup>
 import { ref, onBeforeMount, onMounted, onUnmounted } from "vue";
-
-import tasktdone from "../assets/es/03Area-02/tasktdone.jpg";
-import tasktun from "../assets/es/03Area-02/tasktun.jpg";
-
-// import taskoneimg from "../assets/es/03Area-02/02bg.jpg";
-// import icon1 from "../assets/es/03Area-01/icon1.png";
-// import noicon1 from "../assets/es/03Area-01/noicon1.png";
+import taskoneimg from "../assets/es/03Area-02/02bg.jpg";
+import icon1 from "../assets/es/03Area-01/icon1.png";
+import noicon1 from "../assets/es/03Area-01/noicon1.png";
 import back from "../assets/es/03Area-01/back.png";
 import { useRouter } from "vue-router";
 
@@ -58,7 +54,7 @@ const { taskone, tasktwo, email } = storeToRefs(homeInfo); // 响应式
 
 const touches = ref([]);
 
-const showImgSrc = ref(tasktun);
+const showImgSrc = ref(noicon1);
 
 const isShowDone = ref(false);
 const router = useRouter();
@@ -78,14 +74,14 @@ const handleUserData = () => {
 
   if (one + two == 2) {
     console.log("两个任务都完成了");
-    showImgSrc.value = tasktdone;
+    showImgSrc.value = icon1;
 
     setTimeout(() => {
       isShowDone.value = true;
     }, 1250);
   } else if (two == 1) {
     console.log("任务2 已经完成");
-    showImgSrc.value = tasktdone;
+    showImgSrc.value = icon1;
   }
 };
 
@@ -111,7 +107,7 @@ const onTouchStart = (event) => {
     y: touch.clientY - touchAreaRect.top,
   }));
 
-  if (touches.value.length == 4) {
+  if (touches.value.length == 3) {
     handleTouchEnd();
   }
 };
@@ -162,9 +158,6 @@ const disableContextMenu = (event) => {
 
 onMounted(() => {
   document.addEventListener("contextmenu", disableContextMenu);
-  // document.addEventListener('contextmenu', this.preventDefault);
-  //   // 禁止触摸开始默认行为
-  //   document.addEventListener('touchstart', this.preventDefault);
 });
 
 onUnmounted(() => {
@@ -178,11 +171,6 @@ onUnmounted(() => {
   width: 100%;
   height: 50vh;
   /* background-color: #f0f0f0; */
-
-  user-select: none;
-  -webkit-user-select: none; /* Safari */
-  -moz-user-select: none; /* Firefox */
-  -ms-user-select: none; /* Internet Explorer/Edge */
 }
 
 .touch-point {

@@ -5,8 +5,9 @@
       :src="btn1"
       :style="{
         top: distanceFromTopAdapted + 'px',
-        left: distanceFromLeftAdapted + 'px',
         width: imageWidthAdapted + 'px',
+        left: '50%',
+        transform: 'translateX(-50%)',
       }"
       class="absolute"
       @click="taskone"
@@ -16,8 +17,9 @@
       :src="btn1"
       :style="{
         top: distanceFromTopAdapted2 + 'px',
-        left: distanceFromLeftAdapted + 'px',
         width: imageWidthAdapted + 'px',
+        left: '50%',
+        transform: 'translateX(-50%)',
       }"
       class="absolute"
       @click="tasktwo"
@@ -28,7 +30,7 @@
   <script setup>
 import { ref, onBeforeMount } from "vue";
 import imageUrl from "../assets/es/02Areas/Map.jpg";
-import btn1 from "../assets/es/02Areas/startBtn1.png";
+import btn1 from "../assets/es/02Areas/StartBtn1.png";
 import { useRouter } from "vue-router";
 defineProps({
   name: String,
@@ -57,21 +59,21 @@ onBeforeMount(() => {
     const adaptedHeight = (originalHeight / originalWidth) * screenWidth;
 
     // 原图中距离顶部的位置
-    const distanceFromTopOriginal = 1306;
+    const distanceFromTopOriginal = 1200;
     // 计算适配后的位置
     distanceFromTopAdapted.value =
       (distanceFromTopOriginal / originalHeight) * adaptedHeight;
 
     // 原图中距离顶部的位置
-    const distanceFromTopOriginal1 = 2261;
+    const distanceFromTopOriginal1 = 2040;
     // 计算适配后的位置
     distanceFromTopAdapted2.value =
       (distanceFromTopOriginal1 / originalHeight) * adaptedHeight;
-    const distanceFromLeftOriginal = 85;
-    distanceFromLeftAdapted.value =
-      (distanceFromLeftOriginal / originalWidth) * screenWidth;
+    // const distanceFromLeftOriginal = 85;
+    // distanceFromLeftAdapted.value =
+    //   (distanceFromLeftOriginal / originalWidth) * screenWidth;
 
-    imageWidthAdapted.value = (120 / originalWidth) * screenWidth;
+    imageWidthAdapted.value = (252 / originalWidth) * screenWidth;
   };
 });
 

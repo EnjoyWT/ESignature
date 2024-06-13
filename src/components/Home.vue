@@ -52,7 +52,7 @@ const router = useRouter();
 const elementTop = ref(0);
 const elementW = ref(0);
 
-const email = ref(null);
+const email = ref("");
 defineProps({
   name: String,
 });
@@ -79,7 +79,6 @@ const count = ref(0);
 
 // 定义 onPlaceholderMobleBlur 方法
 const onPlaceholderMobleBlur = () => {
-  console.log("==============33");
   // window.scroll(0, 0);
   window.scrollTo({
     top: 0,
