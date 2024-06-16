@@ -59,13 +59,13 @@ onBeforeMount(() => {
     const adaptedHeight = (originalHeight / originalWidth) * screenWidth;
 
     // 原图中距离顶部的位置
-    const distanceFromTopOriginal = 1200;
+    const distanceFromTopOriginal = 1040;
     // 计算适配后的位置
     distanceFromTopAdapted.value =
       (distanceFromTopOriginal / originalHeight) * adaptedHeight;
 
     // 原图中距离顶部的位置
-    const distanceFromTopOriginal1 = 2040;
+    const distanceFromTopOriginal1 = 1700;
     // 计算适配后的位置
     distanceFromTopAdapted2.value =
       (distanceFromTopOriginal1 / originalHeight) * adaptedHeight;

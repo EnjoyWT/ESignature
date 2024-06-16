@@ -149,7 +149,7 @@ onBeforeMount(() => {
     const screenWidth = window.innerWidth;
 
     // 假设元素在原始图片中距离顶部的距离为1306像素
-    const distanceFromTopOriginal = 580;
+    const distanceFromTopOriginal = 585;
 
     // 计算元素在屏幕中的相对位置
     elementTop.value =

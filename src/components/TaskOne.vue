@@ -13,12 +13,12 @@
       @touchmove="onTouchMove"
       @contextmenu.prevent="disableContextMenu"
     >
-      <div
+      <!-- <div
         v-for="(touch, index) in touches"
         :key="index"
         class="touch-point"
         :style="{ left: `${touch.x}px`, top: `${touch.y}px` }"
-      ></div>
+      ></div> -->
       <!-- <div v-if="isShowDone">
         <img :src="taskoneimg" class="w-screen h-svh fixed inset-0" />
       </div> -->
@@ -29,9 +29,19 @@
       @update:isShowDone="isShowDone = $event"
     />
 
-    <div class="fixed top-2 left-2 w-[40px] h-[40px]">
+    <!-- <div class="fixed top-2 left-2 w-[40px] h-[40px]">
       <img :src="back" @click="backclicked" />
-    </div>
+    </div> -->
+
+    <button
+      @click.stop.prevent="backclicked"
+      class="w-[130px] h-[60px] fixed"
+      :style="{
+        top: elementTop + 'px',
+        left: '50%',
+        transform: 'translateX(-50%)',
+      }"
+    ></button>
   </div>
 </template>
 
@@ -63,6 +73,7 @@ const showImgSrc = ref(taskoneun);
 
 const isShowDone = ref(false);
 const router = useRouter();
+const elementTop = ref(0);
 
 defineProps({
   name: String,
@@ -71,6 +82,27 @@ onBeforeMount(() => {
   window.scroll(0, 0);
   //判断是否已经盖过章
   handleUserData();
+
+  // 获取屏幕高度
+  const screenWidth = window.innerWidth;
+
+  // 创建一个新的Image对象
+  const img = new Image();
+  // 设置Image对象的src为图片路径
+  img.src = taskonedone;
+  // 监听Image对象的load事件
+  img.onload = () => {
+    const originalWidth = img.naturalWidth;
+    const originalHeight = img.naturalHeight;
+    // 计算图片的高度
+    const adaptedHeight = (originalHeight / originalWidth) * screenWidth;
+
+    // 原图中距离顶部的位置
+    const distanceFromTopOriginal = 1100;
+    // 计算适配后的位置
+    elementTop.value =
+      (distanceFromTopOriginal / originalHeight) * adaptedHeight;
+  };
 });
 
 const handleUserData = () => {
@@ -111,6 +143,7 @@ const onTouchStart = (event) => {
 
   if (touches.value.length == 2) {
     handleTouchEnd();
+    console.log("任务1 已经完成");
   }
 };
 const handleTouchEnd = (event) => {
