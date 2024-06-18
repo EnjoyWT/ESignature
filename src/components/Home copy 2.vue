@@ -4,21 +4,11 @@
     <img :src="imageUrl" class="w-screen h-svh" />
     <!-- 其他元素 -->
 
-    <img
-      :src="imageUrl3"
-      :style="{
-        top: elementTop + 'px',
-        left: '50%',
-        width: elementW2 + 'px',
-        transform: 'translateX(-50%)',
-      }"
-      class="absolute"
-    />
     <input
       type="text"
       class="rounded-full p-3 text-black absolute"
       :style="{
-        top: elementTop + 80 + 'px',
+        top: elementTop + 'px',
         transform: 'translate(-50%, -50%)',
         width: elementW + 'px',
       }"
@@ -29,7 +19,7 @@
     <img
       :src="imageUrl2"
       :style="{
-        top: elementTop + 40 + 80 + 'px',
+        top: elementTop + 40 + 'px',
         width: elementW + 'px',
         left: '50%',
         transform: 'translateX(-50%)',
@@ -50,7 +40,6 @@ import { useRouter } from "vue-router";
 
 import imageUrl from "../assets/es/01Input/InputBG.jpg";
 import imageUrl2 from "../assets/es/01Input/SubmitBtn.png";
-import imageUrl3 from "../assets/es/01Input/Inputprompt.png";
 
 import homeInfoStore from "../store/home";
 
@@ -62,7 +51,6 @@ const router = useRouter();
 
 const elementTop = ref(0);
 const elementW = ref(0);
-const elementW2 = ref(0);
 
 const email = ref("");
 defineProps({
@@ -161,16 +149,13 @@ onBeforeMount(() => {
     const screenWidth = window.innerWidth;
 
     // 假设元素在原始图片中距离顶部的距离为1306像素
-    // const distanceFromTopOriginal = 585;
-    const distanceFromTopOriginal = 470;
+    const distanceFromTopOriginal = 585;
 
     // 计算元素在屏幕中的相对位置
     elementTop.value =
       (distanceFromTopOriginal / originalHeight) * screenHeight;
 
     elementW.value = (556 / originalWidth) * screenWidth;
-
-    elementW2.value = (584 / 750) * screenWidth;
   };
 });
 </script>

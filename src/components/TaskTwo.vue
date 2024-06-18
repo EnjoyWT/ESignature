@@ -28,6 +28,17 @@
       @update:isShowDone="isShowDone = $event"
     />
 
+    <img
+      v-if="isShowBack"
+      :src="back"
+      @click="backclicked"
+      class="w-[124px] h-[45px] fixed"
+      :style="{
+        top: elementTop + 'px',
+        left: '50%',
+        transform: 'translateX(-50%)',
+      }"
+    />
     <button
       @click.stop.prevent="backclicked"
       class="w-[130px] h-[60px] fixed"
@@ -66,6 +77,7 @@ const touches = ref([]);
 const elementTop = ref(0);
 
 const showImgSrc = ref(tasktun);
+const isShowBack = ref(true);
 
 const isShowDone = ref(false);
 const router = useRouter();
@@ -104,6 +116,7 @@ const handleUserData = () => {
   let two = tasktwo.value;
 
   if (one + two == 2) {
+    isShowBack.value = false;
     console.log("两个任务都完成了");
     showImgSrc.value = tasktdone;
 
@@ -111,6 +124,7 @@ const handleUserData = () => {
       isShowDone.value = true;
     }, 1250);
   } else if (two == 1) {
+    isShowBack.value = false;
     console.log("任务2 已经完成");
     showImgSrc.value = tasktdone;
   }
@@ -138,7 +152,7 @@ const onTouchStart = (event) => {
     y: touch.clientY - touchAreaRect.top,
   }));
 
-  if (touches.value.length == 4) {
+  if (touches.value.length == 2 || touches.value.length == 4) {
     handleTouchEnd();
   }
 };

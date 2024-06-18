@@ -29,9 +29,17 @@
       @update:isShowDone="isShowDone = $event"
     />
 
-    <!-- <div class="fixed top-2 left-2 w-[40px] h-[40px]">
-      <img :src="back" @click="backclicked" />
-    </div> -->
+    <img
+      v-if="isShowBack"
+      :src="back"
+      @click="backclicked"
+      class="w-[124px] h-[45px] fixed"
+      :style="{
+        top: elementTop + 'px',
+        left: '50%',
+        transform: 'translateX(-50%)',
+      }"
+    />
 
     <button
       @click.stop.prevent="backclicked"
@@ -72,6 +80,8 @@ const touches = ref([]);
 const showImgSrc = ref(taskoneun);
 
 const isShowDone = ref(false);
+const isShowBack = ref(true);
+
 const router = useRouter();
 const elementTop = ref(0);
 
@@ -111,6 +121,7 @@ const handleUserData = () => {
 
   if (one + two == 2) {
     console.log("两个任务都完成了");
+    isShowBack.value = false;
     showImgSrc.value = taskonedone;
 
     setTimeout(() => {
@@ -118,6 +129,7 @@ const handleUserData = () => {
     }, 1250);
   } else if (one == 1) {
     console.log("任务1 已经完成");
+    isShowBack.value = false;
     showImgSrc.value = taskonedone;
   }
 };
